@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="CheckedTileExample.MainWindow"
+    xmlns:local="clr-namespace:CheckedTileExample"
+        Title="MainWindow" Height="460" Width="660">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="CheckedTileStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <local:CheckedTileLayout x:Name="customTileLayout1" Padding="4">
+            <local:CheckedTile x:Name="tile1" Size="Small" Content="Tile1"/>
+            <local:CheckedTile Size="Small" Content="Tile2"/>
+            <local:CheckedTile Size="Small" Content="Tile3"/>
+            <local:CheckedTile Size="Small" Content="Tile4"/>
+        </local:CheckedTileLayout>
+        <ListBox Grid.Column="1" ItemsSource="{Binding ElementName=customTileLayout1, Path=CheckedTiles}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock x:Name="block1" Text="{Binding Path=Content}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Check some Tile" Grid.Row="1" Grid.ColumnSpan="2" Click="Button_Click"/>
+    </Grid>
+</Window>
